@@ -1,0 +1,22 @@
+h1 {
+  text-align: center;
+}
+
+.container {
+  display: grid;
+  grid-template: repeat(3, 160px) / repeat(3, 160px);
+  margin: auto;
+  justify-items: start;
+  gap: 10px;
+  background-color: black;
+  width: 500px;
+}
+
+.container > * {
+  width: 160px;
+  height: 160px;
+  background-color: aliceblue;
+  display: grid;
+  place-content: center;
+  font-size: 8rem;
+}

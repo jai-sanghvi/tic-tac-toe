@@ -1,12 +1,12 @@
-const player1 = {
-  name: 'mike',
-  marker: 'x',
+const gridContainer = document.querySelector('.container');
+gridContainer.addEventListener('click', playRound);
+
+function makePlayer(name, marker) {
+  return {name, marker};
 }
 
-const player2 = {
-  name: 'john',
-  marker: '0',
-}
+const player1 = makePlayer("mike", "x");
+const player2 = makePlayer("john", "0");
 
 const gameBoard = [1,2,3,4,5,6,7,8,9];
 const winningPatterns = [[1,4,7],[2,5,8],[3,6,9],[1,2,3],[4,5,6],[7,8,9],[1,5,9],[3,5,7]];
@@ -15,7 +15,10 @@ let currentPlayer = (player1.marker === 'x') ? player1 : player2;
 function placeMarkerAt(position) {
   if (gameBoard[position - 1] !== 'x' && gameBoard[position - 1] !== '0') {
     gameBoard[position - 1] = currentPlayer.marker;
-    console.table([gameBoard.slice(0,3), gameBoard.slice(3,6), gameBoard.slice(6)]);
+    
+    const el = document.querySelector(`[data-position="${position}"]`);
+    el.textContent = currentPlayer.marker;
+    // console.table([gameBoard.slice(0,3), gameBoard.slice(3,6), gameBoard.slice(6)]);
     changeTurns();
   }
 }
@@ -41,7 +44,11 @@ function checkGameStatus() {
   }
 }
 
-function playRound(position) {
+function playRound(e) {
+  if (e.target === e.currentTarget) {
+    return;
+  }
+  const position = e.target.dataset.position;
   placeMarkerAt(position);
   checkGameStatus();
 }
