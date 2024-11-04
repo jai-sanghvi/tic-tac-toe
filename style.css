@@ -1,5 +1,21 @@
-h1 {
+:root {
+  --page-background: #1e293b;
+  --box-background: #334155;
+  --track-color: #475569;
+}
+
+body {
+  background-color: var(--page-background);
+  color: white;
+}
+
+h1, p.status {
   text-align: center;
+}
+
+button {
+  display: block;
+  margin: auto;
 }
 
 .container {
@@ -8,14 +24,19 @@ h1 {
   margin: auto;
   justify-items: start;
   gap: 10px;
-  background-color: black;
+  background-color: var(--track-color);
   width: 500px;
+  margin-block: 20px;
+}
+
+.blur {
+  filter: blur(5px);
 }
 
 .container > * {
   width: 160px;
   height: 160px;
-  background-color: aliceblue;
+  background-color: var(--box-background);
   display: grid;
   place-content: center;
   font-size: 8rem;
